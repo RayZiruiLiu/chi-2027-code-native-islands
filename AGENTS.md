@@ -11,11 +11,12 @@ This directory contains three independent, code-native islands. Preserve their c
 ## Navigation contract
 
 - `Y` is up. All `query(x,z)` inputs use one island's local coordinates. Use `queryWorld(THREE.Vector3)` after positioning or rotating the group.
-- Call `query` with the player's actual horizontal radius. Block movement when `walkable` is false. Use `height` as the proposed foot level and `slopeDegrees` to enforce the host's slope limit. Evaluate step height between the old and new foot levels before moving.
+- Call `query` with the player's actual horizontal radius. Block movement when `walkable` is false. Use `height` as the proposed foot level and `slopeDegrees` to enforce the host's slope limit. Evaluate step height between the old and new foot levels before moving. Water is crossable: `height` follows the basin or streambed, so the player steps down into it and back up the bank.
 - `surfaceType` distinguishes stairs, ramps, elevated walkways, decks, landings, and natural terrain. Use this label to tune movement without modifying the visual mesh.
 - `walkables` contains the actual surfaces to use for raycasting or navmesh generation. The named `NAV_` nodes in GLB match `walkableNodes` in JSON. Ignore the geological underside for walking.
-- The outline and water mask in JSON are fallback data for other engines. The procedural query is more exact than the sampled water grid.
-- Decorative plants are soft scenery. Trees, water, the Pinwheel mast, and Verdant greenhouse walls are hard blocked regions in the runtime query. Add colliders for thin rails, posts, and animated parts if your interaction design needs physical contact with them.
+- The outline and water mask in JSON are fallback data for other engines. The water mask identifies water but does **not** block it. The procedural query is more exact than the sampled grid.
+- `waterBelow`, `waterSurfaceY`, and `waterDepth` are backend values. The host may tune walking speed or effects in water, but no dive, swim, or water-specific interface is required.
+- Decorative plants are soft scenery. Trees, the Pinwheel mast, and Verdant greenhouse walls are hard blocked regions in the runtime query. Add colliders for thin rails, posts, and animated parts if your interaction design needs physical contact with them.
 
 ## Bridges and placement
 
@@ -26,7 +27,7 @@ This directory contains three independent, code-native islands. Preserve their c
 ## Animation and testing
 
 - Call `island.update(deltaSeconds, elapsedSeconds)` once per rendered frame. `deltaSeconds` and `elapsedSeconds` are in seconds.
-- Before shipping, inspect all three islands from overhead and player height. Test boundary rejection, water blocking, actual stair steps, slope transitions, deck support, and each bridge joint with the host's player controller.
+- Before shipping, inspect all three islands from overhead and player height. Test boundary rejection, crossing water along the basin floor, actual stair steps, slope transitions, deck support, and each bridge joint with the host's player controller.
 - After changing geometry, run `npm run export:models` and keep each GLB synchronized with its navigation JSON and source. Validate loaded GLB node names and regenerate the host's navmesh if applicable.
 
 The demo is a visual and animation check only; it intentionally does not implement the host's player controls.

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {palette,mat,mesh,cylinderBetween,groundHeight} from './common.js';
 
 export const pond={x:2.48,z:-.82,rx:1.75,rz:1.36};
+export const waterSurfaceY=.13;
 export function inPond(x,z,pad=0){const dx=(x-pond.x)/(pond.rx+pad),dz=(z-pond.z)/(pond.rz+pad);return dx*dx+dz*dz<1}
 function edge(a,scale=1){const r=1+.085*Math.sin(3*a+.5)+.04*Math.cos(7*a);return [pond.x+Math.cos(a)*pond.rx*r*scale,pond.z+Math.sin(a)*pond.rz*r*scale]}
 export function pondRadius(x,z){
@@ -19,13 +20,14 @@ export function createWater(scene){
   const g=new THREE.Group();g.name='Recessed pond, dock and boat';scene.add(g);
   const water=mat(palette.water,.18,{transparent:true,opacity:.86,metalness:.05,side:THREE.DoubleSide,depthWrite:false});
   // The terrain mesh forms the sand basin and shallow bank, with no overlay seam.
-  const waterY=.13;
+  const waterY=waterSurfaceY;
   const shape=new THREE.Shape();for(let i=0;i<=64;i++){const [x,z]=edge(i*2*Math.PI/64,1.035);i===0?shape.moveTo(x,-z):shape.lineTo(x,-z)}
   const wg=new THREE.ShapeGeometry(shape,64);wg.rotateX(-Math.PI/2);mesh(wg,water,g,[0,waterY,0]);
   // Timber dock: a slender pier, individual planks and paired mooring posts.
   const wood=mat(palette.wood),plank=mat(0xd7a77f);
   const dock=mesh(new THREE.BoxGeometry(.83,.14,1.63),wood,g,[3.45,.3,-2.35]);dock.rotation.y=-.28;
-  for(let i=0;i<7;i++){const z=-3.06+i*.235,x=3.45+(z+2.35)*-.28;const o=mesh(new THREE.BoxGeometry(.79,.055,.19),i%2?wood:plank,g,[x,.39,z]);o.rotation.y=-.28}
+  const dockPlanks=[];
+  for(let i=0;i<7;i++){const z=-3.06+i*.235,x=3.45+(z+2.35)*-.28;const o=mesh(new THREE.BoxGeometry(.79,.055,.19),i%2?wood:plank,g,[x,.39,z]);o.rotation.y=-.28;dockPlanks.push(o)}
   const dockAngle=-.28;
   for(const localX of [-.36,.36])for(const localZ of [-.73,.73]){
     const x=3.45+localX*Math.cos(dockAngle)+localZ*Math.sin(dockAngle);
@@ -40,5 +42,5 @@ export function createWater(scene){
   const floorGeometry=new THREE.ShapeGeometry(floorShape);floorGeometry.rotateX(-Math.PI/2);mesh(floorGeometry,mat(0xd5a67d,.85,{side:THREE.DoubleSide}),boat,[0,.085,0]);
   for(const x of [-.25,.24])mesh(new THREE.BoxGeometry(.075,.035,.55),wood,boat,[x,.24,0]);
   cylinderBetween([-.15,.22,-.04],[.33,.44,-.67],.027,wood,boat,8);
-  return {group:g,update(t){boat.position.y=boatBaseY+.018*Math.sin(t*1.35);boat.rotation.z=.014*Math.sin(t*1.35+.55);boat.rotation.x=.01*Math.sin(t*1.02)}};
+  return {group:g,walkables:[dock,...dockPlanks],update(t){boat.position.y=boatBaseY+.018*Math.sin(t*1.35);boat.rotation.z=.014*Math.sin(t*1.35+.55);boat.rotation.x=.01*Math.sin(t*1.02)}};
 }

@@ -277,6 +277,11 @@
       "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     ]
   },
+  "waterTraversal": {
+    "mode": "crossable",
+    "waterMaskBlocksMovement": false,
+    "depthProvidedBy": "query().waterDepth"
+  },
   "obstacles": [
     {
       "type": "circle",
@@ -402,8 +407,8 @@
     }
   ],
   "notes": [
-    "Boundary and water mask are navigation aids; use query() for exact procedural checks.",
-    "Small plants and decorative details are nonblocking.",
+    "The water mask marks a wading area, not an obstacle. Use query() for exact water depth and ground height.",
+    "Island boundaries and solid obstacles block movement. Small plants and decorative details are nonblocking.",
     "The GLB is a visual snapshot; run the source update() method for animation."
   ]
 }

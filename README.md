@@ -46,7 +46,8 @@ All coordinates are in each island's local `X/Z` plane; `Y` is up. `createIsland
 
 ```js
 const info = island.query(localX, localZ, {radius: 0.22});
-// {height, normal, slopeDegrees, surfaceType, walkable, blockedBy, x, z}
+// {height, normal, slopeDegrees, surfaceType, walkable, blockedBy,
+//  waterBelow, waterSurfaceY, waterDepth, traversal, x, z}
 
 const worldInfo = island.queryWorld(playerPosition, {radius: 0.22});
 // Adds worldPosition: [x, groundY, z]
@@ -55,11 +56,11 @@ const anchors = island.bridgeLandings();
 // Each has local/world coordinates, an outward vector, and usable width.
 ```
 
-`query` samples the highest tagged walkable mesh under the point. `surfaceType` identifies `terrain`, `ramp`, `stair`, `raised_walkway`, `deck`, `terrace`, `path`, `plaza`, or a landing according to the island. `slopeDegrees` is the hit surface's geometric slope. `walkable` and `blockedBy` use the island outline, water, tree trunks, the central Pinwheel mast, and Verdant greenhouse walls. `radius` is the character's horizontal clearance radius. Small plants and decorative shapes remain nonblocking. The host decides its maximum slope, maximum step height, jump rules, and movement speed.
+`query` samples the highest tagged walkable mesh under the point. `surfaceType` identifies `terrain`, `ramp`, `stair`, `raised_walkway`, `deck`, `terrace`, `path`, `plaza`, `dock`, or a landing according to the island. `slopeDegrees` is the hit surface's geometric slope. `walkable` and `blockedBy` use the island outline, tree trunks, the central Pinwheel mast, and Verdant greenhouse walls. **Water is crossable.** Over water, `height` remains the basin or streambed floor so the host can step the player down naturally; `waterBelow`, `waterSurfaceY`, `waterDepth`, and `traversal` are backend data for optional movement tuning. No swim or dive UI is included. `radius` is the character's horizontal clearance radius. Small plants and decorative shapes remain nonblocking. The host decides its maximum slope, maximum step height, jump rules, and movement speed.
 
 `walkables` is the list of exact mesh surfaces for raycasts or navmesh construction. Every one has a `name` beginning with `NAV_` and a `userData.navSurface` value. In a loaded GLB, look up these names or read `walkableNodes` in the adjacent JSON. Do not treat the entire visual mesh, including the floating geology, as walkable.
 
-The JSON `boundaryXZ` is a polygon around the island top. `waterMask.rows` is a sampled `0`/`1` grid using `originXZ`, `cellSize`, `width`, and `depth`; row 0 is the minimum Z side. It is useful for engines that cannot run the source. The exact procedural `query` and water tests should take priority where available. Bridge landings are connection candidates; verify the final bridge span and clearance against the host world's placement.
+The JSON `boundaryXZ` is a polygon around the island top. `waterMask.rows` is a sampled `0`/`1` grid using `originXZ`, `cellSize`, `width`, and `depth`; row 0 is the minimum Z side. **A `1` marks water, not a movement blocker.** It is useful for engines that cannot run the source. The exact procedural `query` and water tests should take priority where available. Bridge landings are connection candidates; verify the final bridge span and clearance against the host world's placement.
 
 ## Use the GLBs
 
@@ -77,4 +78,4 @@ The demo runs at `http://127.0.0.1:5180/`. It provides orbit viewing and continu
 
 ## Practical limits
 
-These islands were authored as stylized scenes. The supplied collision regions cover the ground, main routes, water, trees, mast, and greenhouse walls. Decorative rails, narrow posts, and kinetic mechanisms are visible meshes but are not individually included in the simple blocked-area query. If the host uses rigid-body physics, create suitable colliders for those objects and keep the player outside rotating mechanisms. The manifest is an integration aid, not a complete baked navmesh or a guarantee that arbitrary bridge arrangements are traversable.
+These islands were authored as stylized scenes. The supplied collision regions cover the ground, main routes, trees, mast, and greenhouse walls; water is identified separately as crossable terrain. Decorative rails, narrow posts, and kinetic mechanisms are visible meshes but are not individually included in the simple blocked-area query. If the host uses rigid-body physics, create suitable colliders for those objects and keep the player outside rotating mechanisms. The manifest is an integration aid, not a complete baked navmesh or a guarantee that arbitrary bridge arrangements are traversable.
