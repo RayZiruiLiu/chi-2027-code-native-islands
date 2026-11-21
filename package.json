@@ -1,0 +1,18 @@
+{
+  "name": "chi-2027-island-integration-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.js",
+  "scripts": {
+    "export:models": "node scripts/export-models.mjs",
+    "dev": "vite demo --host 127.0.0.1 --port 5180",
+    "build:demo": "vite build demo --outDir ../dist"
+  },
+  "dependencies": {
+    "three": "0.181.0"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2"
+  }
+}
