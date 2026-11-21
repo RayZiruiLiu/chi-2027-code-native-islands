@@ -309,55 +309,55 @@
   ],
   "walkableNodes": [
     {
-      "name": "NAV_pinwheel_terrain_1131",
+      "name": "NAV_pinwheel_terrain_0",
       "type": "terrain"
     },
     {
-      "name": "NAV_pinwheel_plaza_1141",
+      "name": "NAV_pinwheel_plaza_1",
       "type": "plaza"
     },
     {
-      "name": "NAV_pinwheel_ramp_1143",
+      "name": "NAV_pinwheel_ramp_2",
       "type": "ramp"
     },
     {
-      "name": "NAV_pinwheel_ramp_1152",
+      "name": "NAV_pinwheel_ramp_3",
       "type": "ramp"
     },
     {
-      "name": "NAV_pinwheel_path_1161",
+      "name": "NAV_pinwheel_path_4",
       "type": "path"
     },
     {
-      "name": "NAV_pinwheel_path_1162",
+      "name": "NAV_pinwheel_path_5",
       "type": "path"
     },
     {
-      "name": "NAV_pinwheel_raised_walkway_1163",
+      "name": "NAV_pinwheel_raised_walkway_6",
       "type": "raised_walkway"
     },
     {
-      "name": "NAV_pinwheel_path_1184",
+      "name": "NAV_pinwheel_path_7",
       "type": "path"
     },
     {
-      "name": "NAV_pinwheel_path_1185",
+      "name": "NAV_pinwheel_path_8",
       "type": "path"
     },
     {
-      "name": "NAV_pinwheel_tower_deck_1186",
+      "name": "NAV_pinwheel_tower_deck_9",
       "type": "tower_deck"
     },
     {
-      "name": "NAV_pinwheel_tower_deck_1213",
+      "name": "NAV_pinwheel_tower_deck_10",
       "type": "tower_deck"
     },
     {
-      "name": "NAV_pinwheel_bridge_landing_1320",
+      "name": "NAV_pinwheel_bridge_landing_11",
       "type": "bridge_landing"
     },
     {
-      "name": "NAV_pinwheel_bridge_landing_1323",
+      "name": "NAV_pinwheel_bridge_landing_12",
       "type": "bridge_landing"
     }
   ],

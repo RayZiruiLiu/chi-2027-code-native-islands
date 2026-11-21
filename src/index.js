@@ -29,7 +29,7 @@ const landings={
   pinwheel:[[-4.75,-.05,-1,.96],[4.55,.05,1,.96]]
 };
 
-function tag(mesh,kind,id){mesh.name=`NAV_${id}_${kind}_${mesh.id}`;mesh.userData.navSurface=kind}
+function tag(mesh,kind){mesh.userData.navSurface=kind}
 
 /**
  * Builds one island at its original scale. Add `group` to your Three.js scene.
@@ -79,6 +79,8 @@ export function createIsland(id,{position=[0,0,0],rotationY=0,scale=1}={}){
     for(let i=11;i<13;i++)tag(walkables[i],'bridge_landing',id);
   }
 
+  // Stable names let a GLB loader match navigation JSON regardless of creation order.
+  walkables.forEach((object,index)=>{object.name=`NAV_${id}_${object.userData.navSurface}_${index}`});
   group.position.set(...position);group.rotation.y=rotationY;group.scale.setScalar(scale);
   const ray=new THREE.Raycaster();
   const normalMatrix=new THREE.Matrix3();

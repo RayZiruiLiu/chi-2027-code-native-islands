@@ -276,43 +276,43 @@
   ],
   "walkableNodes": [
     {
-      "name": "NAV_verdant_terrain_461",
+      "name": "NAV_verdant_terrain_0",
       "type": "terrain"
     },
     {
-      "name": "NAV_verdant_terrace_468",
+      "name": "NAV_verdant_terrace_1",
       "type": "terrace"
     },
     {
-      "name": "NAV_verdant_terrace_470",
+      "name": "NAV_verdant_terrace_2",
       "type": "terrace"
     },
     {
-      "name": "NAV_verdant_greenhouse_floor_480",
+      "name": "NAV_verdant_greenhouse_floor_3",
       "type": "greenhouse_floor"
     },
     {
-      "name": "NAV_verdant_raised_walkway_657",
+      "name": "NAV_verdant_raised_walkway_4",
       "type": "raised_walkway"
     },
     {
-      "name": "NAV_verdant_raised_walkway_684",
+      "name": "NAV_verdant_raised_walkway_5",
       "type": "raised_walkway"
     },
     {
-      "name": "NAV_verdant_raised_walkway_711",
+      "name": "NAV_verdant_raised_walkway_6",
       "type": "raised_walkway"
     },
     {
-      "name": "NAV_verdant_bridge_landing_738",
+      "name": "NAV_verdant_bridge_landing_7",
       "type": "bridge_landing"
     },
     {
-      "name": "NAV_verdant_bridge_landing_741",
+      "name": "NAV_verdant_bridge_landing_8",
       "type": "bridge_landing"
     },
     {
-      "name": "NAV_verdant_pavilion_deck_1056",
+      "name": "NAV_verdant_pavilion_deck_9",
       "type": "pavilion_deck"
     }
   ],

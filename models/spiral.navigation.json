@@ -653,43 +653,43 @@
   ],
   "walkableNodes": [
     {
-      "name": "NAV_spiral_terrain_7",
+      "name": "NAV_spiral_terrain_0",
       "type": "terrain"
     },
     {
-      "name": "NAV_spiral_pavilion_floor_15",
+      "name": "NAV_spiral_pavilion_floor_1",
       "type": "pavilion_floor"
     },
     {
-      "name": "NAV_spiral_ramp_59",
+      "name": "NAV_spiral_ramp_2",
       "type": "ramp"
     },
     {
-      "name": "NAV_spiral_stair_62",
+      "name": "NAV_spiral_stair_3",
       "type": "stair"
     },
     {
-      "name": "NAV_spiral_stair_63",
+      "name": "NAV_spiral_stair_4",
       "type": "stair"
     },
     {
-      "name": "NAV_spiral_stair_64",
+      "name": "NAV_spiral_stair_5",
       "type": "stair"
     },
     {
-      "name": "NAV_spiral_stair_65",
+      "name": "NAV_spiral_stair_6",
       "type": "stair"
     },
     {
-      "name": "NAV_spiral_stair_66",
+      "name": "NAV_spiral_stair_7",
       "type": "stair"
     },
     {
-      "name": "NAV_spiral_bridge_landing_67",
+      "name": "NAV_spiral_bridge_landing_8",
       "type": "bridge_landing"
     },
     {
-      "name": "NAV_spiral_bridge_landing_72",
+      "name": "NAV_spiral_bridge_landing_9",
       "type": "bridge_landing"
     }
   ],
